@@ -1,9 +1,12 @@
+import throttle from 'lodash.throttle';
+
 const formEl = document.querySelector('.feedback-form');
 const key = 'feedback-form-state';
 // 1 створюємо пустий об'єкт, в який будемо записувати данні з форми
 let formData = {};
 // 2 ставимо слухача на форму (подія input) та вказуємо калбєк функцію handlerInput яка буде приймати подію як параметр
-formEl.addEventListener('input', handlerInput);
+// 22 огортаємо handlerInput в throttle та вказуємо час затримки в секундах
+formEl.addEventListener('input', throttle(handlerInput, 5000));
 // 15 ставимо слухача на форму (подія submit) та вказуємо калбєк функцію onSubmit яка буде приймати подію як параметр
 formEl.addEventListener('submit', onSubmit);
 
